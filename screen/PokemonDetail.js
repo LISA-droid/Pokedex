@@ -14,7 +14,7 @@ export default function PokemonDescription(props) {
                     style={styles.image}
                     source={{ uri : statsPoke.sprites.front_default}}
                 />
-                <View style={{borderBottomColor: 'grey', borderBottomWidth: 1, width: '100%', paddingBottom: 10}}>
+                <View style={{borderBottomColor: '#d1d1d1', borderBottomWidth: 1, width: '100%', paddingBottom: 10}}>
                     <Text style={styles.name}>{poke.name}</Text>
                     <Text>Number : {statsPoke.order}</Text>
                 </View>

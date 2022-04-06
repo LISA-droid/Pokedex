@@ -2,9 +2,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, TabActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screen/Home";
-import Pokedex from "../screen/Pokedex";
+import Parameters from "../screen/Parameters";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import PokemonDetail from "../screen/PokemonDetail.js";
+import PokemonDetail from "../screen/PokemonDetail";
 
 
 const Stack = createNativeStackNavigator();
@@ -14,7 +14,6 @@ function PokemonStack() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="HomeScreen" component={Home} options={{headerShown: false}}/>
-            <Stack.Screen name="PokemonScreen" component={Pokedex} options={{headerShown: false}}/>
             <Stack.Screen name="PokemonDetailScreen" component={PokemonDetail} options={{headerShown: false}} />
         </Stack.Navigator>
     )
@@ -25,11 +24,11 @@ export default function Navigation() {
         <NavigationContainer>
             <Tab.Navigator>
                 <Tab.Screen name="Home" component={PokemonStack} options={{tabBarIcon: ({}) => {
-                    return <Icon name='home' size={30} color='blue'/>
+                    return <Icon name='home' size={30} color='#d1d1d1'/>
                 }}}/>
-                {/* <Tab.Screen name="Pokemon" component={PokemonStack} options={{tabBarIcon: ({}) => {
-                    return <Icon name='pokeball' size={30} color='blue'/>
-                }}}/> */}
+                <Tab.Screen name="Settings" component={Parameters} options={{tabBarIcon: ({}) => {
+                    return <Icon name='cog' size={30} color='#d1d1d1'/>
+                }}}/>
             </Tab.Navigator>
         </NavigationContainer>
     )
