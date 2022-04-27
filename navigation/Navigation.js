@@ -6,6 +6,7 @@ import Parameters from "../screen/Parameters";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import PokemonDetail from "../screen/PokemonDetail";
 import Search from "../screen/Search";
+import Team from "../screen/Team";
 
 
 const Stack = createNativeStackNavigator();
@@ -29,6 +30,9 @@ export default function Navigation() {
                 }}}/>
                 <Tab.Screen name="Search" component={Search} options={{tabBarIcon: ({}) => {
                     return <Icon name='magnify' size={30} color='#d1d1d1'/>
+                }}}/>
+                <Tab.Screen name="Team" component={Team} options={{tabBarIcon: ({}) => {
+                    return <Icon name='pokeball' size={30} color='#d1d1d1'/>
                 }}}/>
                 <Tab.Screen name="Settings" component={Parameters} options={{tabBarIcon: ({}) => {
                     return <Icon name='cog' size={30} color='#d1d1d1'/>

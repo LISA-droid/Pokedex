@@ -1,11 +1,16 @@
-import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView, Button } from "react-native";
 import { TypeColor } from "../Composents/TypeColor";
 import { StatColor } from "../Composents/StatColor";
 import ProgressBar from 'react-native-progress/Bar';
+import AndroidTextInputNativeComponent from "react-native/Libraries/Components/TextInput/AndroidTextInputNativeComponent";
 
 export default function PokemonDescription(props) {
     const statsPoke = props.route.params.statsPoke
     const poke = props.route.params.poke
+
+    function ajouterPoke() {
+        console.log(poke.name)
+    }
 
     return (
         <ScrollView style={{flex: 1}} contentContainerStyle={{alignItems: 'center'}}>
@@ -63,6 +68,7 @@ export default function PokemonDescription(props) {
                         }
                     </View>
                 </View>
+                <Button onPress={ajouterPoke} title="Ajouter à l'équipe"></Button>
             </View>
         </ScrollView>
     )
