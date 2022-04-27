@@ -2,15 +2,50 @@ import { View, Text, Image, StyleSheet, ScrollView, Button } from "react-native"
 import { TypeColor } from "../Composents/TypeColor";
 import { StatColor } from "../Composents/StatColor";
 import ProgressBar from 'react-native-progress/Bar';
-import AndroidTextInputNativeComponent from "react-native/Libraries/Components/TextInput/AndroidTextInputNativeComponent";
+import { AsyncStorage } from 'react-native';
+import { Alert } from "react-native";
 
 export default function PokemonDescription(props) {
     const statsPoke = props.route.params.statsPoke
     const poke = props.route.params.poke
 
-    function ajouterPoke() {
-        console.log(poke.name)
-    }
+    async function ajouterPoke() {
+        let team = []
+         try {
+             const value = await AsyncStorage.getItem('team');
+             if (value !== null) {
+                 team = JSON.parse(value)
+             }
+             if (team.length < 6) {
+                team.push(poke) 
+                Alert.alert(
+                    "Pokemon ajouté",
+                    "Vous avez ajouté "+poke.name+" à votre équipe",
+                   [
+                       { text: "Ça marche !"}
+                   ]
+                )
+             } else {
+                 Alert.alert(
+                     "Equipe pleine",
+                     "Vous devez supprimer un Pokemon de votre équipe avant d'en ajouter un nouveau",
+                    [
+                        { text: "Ça marche !"}
+                    ]
+                 )
+             }
+             try {
+                 await AsyncStorage.setItem(
+                     'team',
+                     JSON.stringify(team)
+                 );
+             } catch (error) {
+                 // Error saving data
+             }
+         } catch (error) {
+             // Error retrieving data
+         }
+     }
 
     return (
         <ScrollView style={{flex: 1}} contentContainerStyle={{alignItems: 'center'}}>
@@ -51,7 +86,6 @@ export default function PokemonDescription(props) {
                     }
                     </View>
                 </View>
-
 
                 <View style={{marginTop: 20}}>
                     <Text style={{fontSize: 20}}>Base stats :</Text>
